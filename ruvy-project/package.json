@@ -1,0 +1,19 @@
+{
+  "name": "ruvy-project-portfolio",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "sync": "node scripts/sync-content.mjs",
+    "format": "prettier --config .prettierrc.json --write ../index.html styles.css app.js data/content.json scripts/*.mjs *.json *.js README.md",
+    "format:check": "prettier --config .prettierrc.json --check ../index.html styles.css app.js data/content.json scripts/*.mjs *.json *.js README.md",
+    "lint": "eslint app.js scripts/*.mjs && stylelint styles.css && html-validate --config .htmlvalidate.json ../index.html",
+    "test": "node --test scripts/content.test.mjs",
+    "check": "node scripts/check.mjs"
+  },
+  "devDependencies": {
+    "eslint": "^10.13.0",
+    "html-validate": "^11.17.0",
+    "prettier": "^3.9.10",
+    "stylelint": "^17.16.0"
+  }
+}

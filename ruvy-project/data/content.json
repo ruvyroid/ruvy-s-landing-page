@@ -23,6 +23,72 @@
       "category": "Моушн-дизайн",
       "cover": "ruvy-project/assets/motion/20sec.jpg",
       "video": "ruvy-project/assets/motion/20sec.mp4"
+    },
+    {
+      "published": true,
+      "title": "Знаки",
+      "category": "Рилс",
+      "video": "ruvy-project/assets/portfolio/znaki.mp4",
+      "cover": "ruvy-project/assets/portfolio/znaki.jpg",
+      "description": ""
+    },
+    {
+      "published": true,
+      "title": "First Screen",
+      "category": "Рилс",
+      "video": "ruvy-project/assets/portfolio/first-screen.mp4",
+      "cover": "ruvy-project/assets/portfolio/first-screen.jpg",
+      "description": ""
+    },
+    {
+      "published": true,
+      "title": "Ivents",
+      "category": "Рилс",
+      "video": "ruvy-project/assets/portfolio/ivents.mp4",
+      "cover": "ruvy-project/assets/portfolio/ivents.jpg",
+      "description": ""
+    },
+    {
+      "published": true,
+      "title": "Short Beauty",
+      "category": "Рилс",
+      "video": "ruvy-project/assets/portfolio/short_beauty.mp4",
+      "cover": "ruvy-project/assets/portfolio/short_beauty.jpg",
+      "description": ""
+    },
+    {
+      "published": true,
+      "title": "Россия",
+      "category": "Горизонтальные видео",
+      "video": "ruvy-project/assets/portfolio/russia.mp4",
+      "cover": "ruvy-project/assets/portfolio/russia.jpg",
+      "description": "Полностью авторская работа ruvy.project."
+    },
+    {
+      "published": true,
+      "title": "5 Cosmic Trends for 2026 That Will Transform Your Abundance",
+      "category": "Горизонтальные видео",
+      "youtubeId": "I4FaM5fu8jc",
+      "start": 76
+    },
+    {
+      "published": true,
+      "title": "Симба учится выживанию в лесу!",
+      "category": "Горизонтальные видео",
+      "youtubeId": "G9UsiGvE_-8",
+      "start": 944
+    },
+    {
+      "published": true,
+      "title": "Кто построит ЛУЧШИЙ сад?",
+      "category": "Горизонтальные видео",
+      "youtubeId": "LVxhFpUtjTM",
+      "start": 592
     }
-  ]
+  ],
+  "rates": {
+    "Моушн-дизайн": "2 000–5 000 ₽ / минута",
+    "Рилс": "1 500–5 000 ₽ / ролик",
+    "Горизонтальные видео": "5 000–15 000 ₽ / видео"
+  }
 }

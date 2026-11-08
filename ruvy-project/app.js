@@ -89,12 +89,52 @@
     updateNavigation();
   }
 
+  function initRails() {
+    for (const section of document.querySelectorAll('.playlist')) {
+      const rail = section.querySelector('.track-rail');
+      const cards = [...rail.children];
+      const buttons = [...section.querySelectorAll('[data-step]')];
+      function sync() {
+        buttons[0].disabled = rail.scrollLeft < 2;
+        buttons[1].disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
+      }
+      buttons.forEach((button) =>
+        button.addEventListener('click', () => {
+          const position = cards.reduce(
+            (nearest, card, index) =>
+              Math.abs(card.offsetLeft - rail.scrollLeft) <
+              Math.abs(cards[nearest].offsetLeft - rail.scrollLeft)
+                ? index
+                : nearest,
+            0,
+          );
+          const next = Math.max(
+            0,
+            Math.min(cards.length - 1, position + Number(button.dataset.step)),
+          );
+          rail.scrollTo({
+            left: cards[next].offsetLeft,
+            behavior:
+              reducedMotion.matches || document.documentElement.dataset.motion === 'off'
+                ? 'instant'
+                : 'smooth',
+          });
+        }),
+      );
+      rail.addEventListener('scroll', sync, { passive: true });
+      window.addEventListener('resize', sync);
+      sync();
+    }
+  }
+
   function initPortfolioDialog() {
     const dialog = document.querySelector('#video-dialog');
     if (typeof dialog.showModal !== 'function') return; // Native video links remain usable.
     const player = document.querySelector('#player');
     let lastTrigger;
     let activeVideo;
+    let tracks = [];
+    const picker = document.querySelector('#track-picker');
 
     function releaseVideo() {
       if (!activeVideo) return;
@@ -104,21 +144,30 @@
       activeVideo = null;
     }
 
-    document.querySelector('#portfolio').addEventListener('click', (event) => {
-      const link = event.target.closest('a[data-video]');
-      if (
-        !link ||
-        event.ctrlKey ||
-        event.metaKey ||
-        event.shiftKey ||
-        event.altKey ||
-        event.button !== 0
-      )
-        return;
-      event.preventDefault();
-      lastTrigger = link;
+    function playTrack(link) {
+      releaseVideo();
+      player.replaceChildren();
       document.querySelector('#video-title').textContent = link.dataset.title;
       document.querySelector('#video-note').textContent = link.dataset.description;
+      const source = document.querySelector('#youtube-source');
+      const embedded = Boolean(link.dataset.youtube);
+      source.hidden = !embedded;
+      if (embedded) {
+        source.href = link.href;
+        const frame = document.createElement('iframe');
+        frame.title = link.dataset.title;
+        frame.src =
+          'https://www.youtube-nocookie.com/embed/' +
+          link.dataset.youtube +
+          '?start=' +
+          Number(link.dataset.start) +
+          '&autoplay=1';
+        frame.referrerPolicy = 'strict-origin-when-cross-origin';
+        frame.allow = 'autoplay; encrypted-media; fullscreen; picture-in-picture';
+        frame.allowFullscreen = true;
+        player.append(frame);
+        return;
+      }
       const video = document.createElement('video');
       video.controls = true;
       video.playsInline = true;
@@ -139,11 +188,37 @@
       );
       activeVideo = video;
       player.replaceChildren(video);
-      dialog.showModal();
-      document.body.classList.add('locked');
+
       video.play().catch(() => {
         /* Native controls remain available if autoplay is blocked. */
       });
+    }
+    picker.addEventListener('change', () => playTrack(tracks[picker.selectedIndex]));
+    document.querySelector('#portfolio').addEventListener('click', (event) => {
+      const link = event.target.closest('a[data-video]');
+      if (
+        !link ||
+        event.ctrlKey ||
+        event.metaKey ||
+        event.shiftKey ||
+        event.altKey ||
+        event.button !== 0
+      )
+        return;
+      event.preventDefault();
+      lastTrigger = link;
+      tracks = [...link.closest('.playlist').querySelectorAll('[data-video]')];
+      picker.replaceChildren(
+        ...tracks.map((item) => {
+          const option = document.createElement('option');
+          option.textContent = item.dataset.title;
+          return option;
+        }),
+      );
+      picker.selectedIndex = tracks.indexOf(link);
+      dialog.showModal();
+      document.body.classList.add('locked');
+      playTrack(link);
     });
     document.querySelector('.close').addEventListener('click', () => dialog.close());
     dialog.addEventListener('click', (event) => {
@@ -249,6 +324,7 @@
 
   initArtDirection();
   initNavigation();
+  initRails();
   initPortfolioDialog();
   initMotion();
   document.querySelector('#year').textContent = new Date().getFullYear();

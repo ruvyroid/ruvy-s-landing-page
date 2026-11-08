@@ -1903,3 +1903,130 @@ html[data-motion='off'] .title-mask > span {
 .player video {
   object-fit: contain;
 }
+#portfolio:has(.playlist) {
+  display: block;
+}
+.playlist {
+  min-width: 0;
+  border-top: 1px solid var(--line);
+  padding: 24px 0 32px;
+}
+.rail-head,
+.rail-buttons,
+.playlist-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rail-head {
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.rail-head h3 {
+  font-family: var(--display);
+  font-size: clamp(18px, 2.4vw, 32px);
+  letter-spacing: -0.04em;
+}
+.rate {
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: 14px;
+}
+.rail-buttons {
+  display: none;
+}
+.js .rail-buttons {
+  display: flex;
+}
+.rail-buttons button {
+  width: 42px;
+  height: 42px;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--ink);
+  font-size: 20px;
+}
+.rail-buttons button:disabled {
+  opacity: 0.32;
+}
+.track-rail {
+  position: relative;
+  display: flex;
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 4px 3px 10px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+.track-rail li {
+  flex: 0 0 clamp(240px, 40%, 520px);
+  scroll-snap-align: start;
+  min-width: 0;
+}
+.track-cover {
+  position: relative;
+  aspect-ratio: 16/9;
+  background: #262622;
+  overflow: hidden;
+  border-radius: 5px;
+}
+.track-cover img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+.track-cover span {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  background: #101010cc;
+  color: white;
+  padding: 9px 12px;
+  border-radius: 50%;
+}
+.track-caption {
+  padding: 10px 2px;
+  font-weight: 600;
+}
+.track-caption small {
+  color: var(--accent);
+  margin-right: 6px;
+}
+.playlist-controls {
+  padding: 0 20px 14px;
+  font-size: 13px;
+}
+.playlist-controls select {
+  min-width: 0;
+  max-width: 70%;
+  background: #242424;
+  color: var(--ink);
+  padding: 8px;
+  border: 1px solid var(--line);
+}
+.player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+#youtube-source[hidden] {
+  display: none;
+}
+@media (max-width: 680px) {
+  .track-rail li {
+    flex-basis: 86%;
+  }
+  .rail-buttons {
+    gap: 4px;
+  }
+  .rail-buttons button {
+    width: 36px;
+    height: 36px;
+  }
+  .rail-head {
+    align-items: flex-end;
+  }
+}

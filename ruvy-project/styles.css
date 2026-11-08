@@ -632,6 +632,7 @@ a.preview:hover .play {
   gap: 14px;
 }
 .tool {
+  justify-content: center;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -639,10 +640,10 @@ a.preview:hover .play {
   padding: 20px 15px;
 }
 .tool-icon {
-  font-size: 21px;
-  font-weight: 600;
-  letter-spacing: -1px;
-  width: 33px;
+  display: block;
+  width: 56px;
+  height: 56px;
+  object-fit: contain;
 }
 .tool span:last-child {
   font-size: 12px;
@@ -1340,9 +1341,9 @@ nav a.active::before {
   inset: 0;
   pointer-events: none;
   background: radial-gradient(
-    ellipse at var(--light-x, 80%) var(--light-y, 25%),
-    #ff65391a,
-    transparent 52%
+    circle 72px at var(--light-x, -100px) var(--light-y, -100px),
+    #ff653918,
+    transparent 100%
   );
   transition: opacity 0.4s;
 }
@@ -1371,7 +1372,7 @@ nav a.active::before {
   color: var(--ink) !important;
 }
 .brand-fill,
-.brand-outline {
+.brand-suffix {
   display: inline-block;
   animation: type-rise 1.15s var(--ease) both;
 }
@@ -1381,19 +1382,9 @@ nav a.active::before {
 .hero h1 .brand-dot {
   color: var(--accent);
 }
-.hero h1 .brand-outline {
+.hero h1 .brand-suffix {
   color: var(--ink);
   animation-delay: 0.14s;
-}
-@supports (-webkit-text-stroke: 1px white) {
-  .hero h1 .brand-outline {
-    color: transparent;
-    -webkit-text-stroke: 1.2px var(--ink);
-    transition: color 0.5s;
-  }
-  .hero h1:hover .brand-outline {
-    color: var(--ink);
-  }
 }
 @keyframes type-rise {
   from {
@@ -1906,7 +1897,7 @@ html[data-motion='off'] .title-mask > span {
 }
 @media (prefers-reduced-motion: reduce) {
   .brand-fill,
-  .brand-outline,
+  .brand-suffix,
   .title-mask > span {
     transform: none !important;
     opacity: 1;

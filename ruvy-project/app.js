@@ -217,6 +217,7 @@
     });
     reducedMotion.addEventListener('change', applyMotionPreference);
     applyMotionPreference();
+    const light = document.querySelector('.hero-light');
     const fine = matchMedia('(hover: hover) and (pointer: fine)');
     const hero = document.querySelector('.hero');
     hero.addEventListener(
@@ -224,18 +225,12 @@
       (event) => {
         if (!fine.matches || root.dataset.motion === 'off') return;
         const box = hero.getBoundingClientRect();
-        const light = document.querySelector('.hero-light');
-        light.style.setProperty(
-          '--light-x',
-          ((event.clientX - box.left) / box.width) * 100 + '%',
-        );
-        light.style.setProperty(
-          '--light-y',
-          ((event.clientY - box.top) / box.height) * 100 + '%',
-        );
+        light.style.setProperty('--light-x', event.clientX - box.left + 'px');
+        light.style.setProperty('--light-y', event.clientY - box.top + 'px');
       },
       { passive: true },
     );
+    hero.addEventListener('pointerleave', () => light.removeAttribute('style'));
     document.querySelectorAll('.service, .tool').forEach((element, index) => {
       element.style.setProperty('--reveal-delay', (index % 3) * 55 + 'ms');
     });

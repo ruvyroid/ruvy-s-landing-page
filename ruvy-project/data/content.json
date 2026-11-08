@@ -2,5 +2,27 @@
   "telegram": "https://t.me/ruvyemm",
   "email": "1rruvyy1@gmail.com",
   "placeholderCount": 6,
-  "projects": []
+  "projects": [
+    {
+      "published": true,
+      "title": "Roblox Motion Doodle",
+      "category": "Моушн-дизайн",
+      "cover": "ruvy-project/assets/motion/roblox-motion_doodle.jpg",
+      "video": "ruvy-project/assets/motion/roblox-motion_doodle.mp4"
+    },
+    {
+      "published": true,
+      "title": "Transform",
+      "category": "Моушн-дизайн",
+      "cover": "ruvy-project/assets/motion/transform.jpg",
+      "video": "ruvy-project/assets/motion/transform.mp4"
+    },
+    {
+      "published": true,
+      "title": "20sec",
+      "category": "Моушн-дизайн",
+      "cover": "ruvy-project/assets/motion/20sec.jpg",
+      "video": "ruvy-project/assets/motion/20sec.mp4"
+    }
+  ]
 }

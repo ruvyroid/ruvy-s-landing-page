@@ -53,7 +53,8 @@ test('project text is escaped and untrusted media URLs are excluded', () => {
       },
     ],
   });
-  assert.match(html, /&lt;img/);
+  assert.doesNotMatch(html, /onerror/);
+  assert.match(html, /data-description="&quot; onclick=&quot;alert/);
   assert.doesNotMatch(html, /<img|data-description="" onclick/);
 });
 

@@ -95,6 +95,7 @@
       const cards = [...rail.children];
       const buttons = [...section.querySelectorAll('[data-step]')];
       function sync() {
+        buttons[0].parentElement.hidden = rail.scrollWidth <= rail.clientWidth + 2;
         buttons[0].disabled = rail.scrollLeft < 2;
         buttons[1].disabled = rail.scrollLeft + rail.clientWidth >= rail.scrollWidth - 2;
       }
@@ -145,6 +146,10 @@
     }
 
     function playTrack(link) {
+      dialog.classList.toggle(
+        'portrait-player',
+        Boolean(link.closest('.playlist--portrait')),
+      );
       releaseVideo();
       player.replaceChildren();
       document.querySelector('#video-title').textContent = link.dataset.title;

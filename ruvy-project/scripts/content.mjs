@@ -70,16 +70,18 @@ function placeholder(index) {
 
 function playlistCard(title, works, rate) {
   const tracks = works.map((work, index) => {
+    const number = String(index + 1).padStart(2, '0');
+    const label = escape(title) + ' · ' + number;
     const thumb =
       work.cover ||
       (work.youtubeId
         ? 'https://i.ytimg.com/vi/' + work.youtubeId + '/hqdefault.jpg'
         : '');
-    return `<li><a href="${escape(work.video)}" data-video data-title="${escape(work.title)}" data-description="${escape(work.description)}" data-cover="${escape(work.cover)}" data-youtube="${escape(work.youtubeId)}" data-start="${work.start}">
+    return `<li><a href="${escape(work.video)}" data-video aria-label="Смотреть: ${label}" data-title="${label}" data-description="${escape(work.description)}" data-cover="${escape(work.cover)}" data-youtube="${escape(work.youtubeId)}" data-start="${work.start}">
       <div class="track-cover">${thumb ? `<img loading="lazy" src="${escape(thumb)}" alt="">` : ''}<span aria-hidden="true">▶</span></div>
-      <div class="track-caption"><small>${String(index + 1).padStart(2, '0')}</small> ${escape(work.title)}</div></a></li>`;
+      <div class="track-caption">${number}</div></a></li>`;
   });
-  return `<article class="playlist"><div class="rail-head"><div><h3>${escape(title)}</h3>${rate ? `<p class="rate">${escape(rate)}</p>` : ''}</div><div class="rail-buttons"><button type="button" data-step="-1" aria-label="Листать назад: ${escape(title)}">←</button><button type="button" data-step="1" aria-label="Листать вперёд: ${escape(title)}">→</button></div></div><ol class="track-rail">${tracks.join('')}</ol></article>`;
+  return `<article class="playlist${title === 'Рилс' ? ' playlist--portrait' : ''}"><div class="rail-head"><div><h3>${escape(title)}</h3>${rate ? `<p class="rate">${escape(rate)}</p>` : ''}</div><div class="rail-buttons"><button type="button" data-step="-1" aria-label="Листать назад: ${escape(title)}">←</button><button type="button" data-step="1" aria-label="Листать вперёд: ${escape(title)}">→</button></div></div><ol class="track-rail">${tracks.join('')}</ol></article>`;
 }
 function renderPlaylists(projects, rates = {}) {
   const groups = new Map();

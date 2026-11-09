@@ -574,14 +574,6 @@ a.preview:hover .play {
   font-size: 10px;
   color: var(--muted);
 }
-.services {
-  background: var(--ink);
-  color: var(--bg);
-}
-.services .eyebrow,
-.services .section-caption {
-  color: #64645e;
-}
 .service-list {
   border-top: 1px solid #c6c6bd;
 }
@@ -1532,9 +1524,6 @@ h2 {
 }
 .motion .reveal {
   transition-delay: var(--reveal-delay, 0ms);
-}
-.services {
-  background: #eae8df;
 }
 .services h2 {
   max-width: 1000px;

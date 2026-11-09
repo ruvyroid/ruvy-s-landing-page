@@ -68,7 +68,36 @@ function placeholder(index) {
   </div></div>`;
 }
 
-function playlistCard(title, works, rate) {
+const formats = {
+  Рилс: {
+    id: 'reels',
+    detail:
+      'Вертикальные ролики для Reels и Shorts. Монтаж под речь или музыку, субтитры и графика.',
+  },
+  'Моушн-дизайн': {
+    id: 'motion',
+    detail: 'Анимация текста и иллюстраций, заставки, композитинг и визуальные эффекты.',
+  },
+  'Горизонтальные видео': {
+    id: 'longform',
+    detail: 'Подкасты, интервью, авторские и игровые видео для YouTube.',
+  },
+};
+
+function renderServices(projects, rates = {}) {
+  return (
+    '<div class="format-list">' +
+    Object.entries(formats)
+      .map(([name, format]) => {
+        const examples = projects.some((project) => project.category === name);
+        return `<article class="format-row"><div><h3>${escape(name)}</h3><p>${format.detail}</p></div><div class="format-details"><strong>${escape(rates[name] || 'По договорённости')}</strong>${examples ? '<a href="#' + format.id + '">Смотреть примеры ↗</a>' : ''}</div></article>`;
+      })
+      .join('') +
+    '</div>'
+  );
+}
+
+function playlistCard(title, works, description) {
   const tracks = works.map((work, index) => {
     const number = String(index + 1).padStart(2, '0');
     const label = escape(title) + ' · ' + number;
@@ -81,9 +110,9 @@ function playlistCard(title, works, rate) {
       <div class="track-cover">${thumb ? `<img loading="lazy" src="${escape(thumb)}" alt="">` : ''}<span aria-hidden="true">▶</span></div>
       <div class="track-caption">${number}</div></a></li>`;
   });
-  return `<article class="playlist${title === 'Рилс' ? ' playlist--portrait' : ''}"><div class="rail-head"><div><h3>${escape(title)}</h3>${rate ? `<p class="rate">${escape(rate)}</p>` : ''}</div><div class="rail-buttons"><button type="button" data-step="-1" aria-label="Листать назад: ${escape(title)}">←</button><button type="button" data-step="1" aria-label="Листать вперёд: ${escape(title)}">→</button></div></div><ol class="track-rail">${tracks.join('')}</ol></article>`;
+  return `<article${Object.hasOwn(formats, title) ? ' id="' + formats[title].id + '"' : ''} class="playlist${title === 'Рилс' ? ' playlist--portrait' : ''}"><div class="rail-head"><div><h3>${escape(title)}</h3>${description ? `<p class="playlist-description">${escape(description)}</p>` : ''}</div><div class="rail-buttons"><button type="button" data-step="-1" aria-label="Листать назад: ${escape(title)}">←</button><button type="button" data-step="1" aria-label="Листать вперёд: ${escape(title)}">→</button></div></div><ol class="track-rail">${tracks.join('')}</ol></article>`;
 }
-function renderPlaylists(projects, rates = {}) {
+function renderPlaylists(projects, descriptions = {}) {
   const groups = new Map();
   for (const project of projects) {
     const name = project.category || 'Работы';
@@ -91,7 +120,7 @@ function renderPlaylists(projects, rates = {}) {
     groups.get(name).push(project);
   }
   return [...groups]
-    .map(([name, works]) => playlistCard(name, works, rates[name]))
+    .map(([name, works]) => playlistCard(name, works, descriptions[name]))
     .join('\n');
 }
 export function renderContacts(data) {
@@ -116,8 +145,9 @@ export function renderContent(html, data) {
     : 6;
   const parts = {
     count: `<span id="work-count" role="status" aria-label="Опубликовано работ: ${projects.length}">[ ${String(projects.length).padStart(2, '0')} ]</span>`,
-    portfolio: `<div class="portfolio-grid" id="portfolio">${projects.length ? renderPlaylists(projects, data.rates) : Array.from({ length: placeholderCount }, (_, index) => placeholder(index)).join('\n')}</div>`,
-    status: `<span>${projects.length ? 'Выберите ролик в подборке.' : 'Место для будущих работ. Портфолио скоро появится здесь.'}</span>`,
+    portfolio: `<div class="portfolio-grid" id="portfolio">${projects.length ? renderPlaylists(projects, data.playlistDescriptions) : Array.from({ length: placeholderCount }, (_, index) => placeholder(index)).join('\n')}</div>`,
+    status: projects.length ? '' : '<p>Портфолио скоро появится здесь.</p>',
+    services: renderServices(projects, data.rates),
     contacts: renderContacts(data),
   };
   for (const [key, value] of Object.entries(parts)) {

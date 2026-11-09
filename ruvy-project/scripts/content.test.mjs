@@ -2,7 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { publishedProjects, renderContacts, renderContent } from './content.mjs';
 
-const template = ['count', 'portfolio', 'status', 'contacts']
+const template = ['count', 'portfolio', 'status', 'contacts', 'services']
   .map((key) => `<!-- content:${key}:start --><!-- content:${key}:end -->`)
   .join('\n');
 const project = {

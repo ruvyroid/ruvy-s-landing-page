@@ -1909,7 +1909,7 @@ html[data-motion='off'] .title-mask > span {
 .playlist {
   min-width: 0;
   border-top: 1px solid var(--line);
-  padding: 24px 0 32px;
+  padding: clamp(24px, 3vw, 44px) 0;
 }
 .rail-head,
 .rail-buttons,
@@ -1929,13 +1929,13 @@ html[data-motion='off'] .title-mask > span {
 }
 .rate {
   margin-top: 6px;
-  color: var(--muted);
+  color: var(--accent);
   font-size: 14px;
 }
 .rail-buttons {
   display: none;
 }
-.js .rail-buttons {
+.js .rail-buttons:not([hidden]) {
   display: flex;
 }
 .rail-buttons button {
@@ -1959,7 +1959,7 @@ html[data-motion='off'] .title-mask > span {
   padding: 4px 3px 10px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  scrollbar-width: thin;
+  scrollbar-width: none;
 }
 .track-rail li {
   flex: 0 0 clamp(240px, 40%, 520px);
@@ -1988,12 +1988,32 @@ html[data-motion='off'] .title-mask > span {
   border-radius: 50%;
 }
 .track-caption {
-  padding: 10px 2px;
-  font-weight: 600;
+  padding: 10px 0;
+  color: var(--muted);
+  font: 500 13px/1.3 monospace;
+  letter-spacing: 0.08em;
 }
-.track-caption small {
-  color: var(--accent);
-  margin-right: 6px;
+.track-rail::-webkit-scrollbar {
+  display: none;
+}
+.playlist--portrait .track-rail li {
+  flex-basis: clamp(168px, calc((100% - 48px) / 4), 300px);
+}
+.playlist--portrait .track-cover {
+  aspect-ratio: 9 / 16;
+  background: black;
+}
+.playlist--portrait img {
+  object-fit: contain;
+}
+.portrait-player .player {
+  aspect-ratio: auto;
+  height: min(64dvh, 700px);
+}
+@media (max-width: 680px) {
+  .playlist--portrait .track-rail li {
+    flex-basis: min(76%, 32svh, 300px);
+  }
 }
 .playlist-controls {
   padding: 0 20px 14px;

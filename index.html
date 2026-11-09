@@ -118,7 +118,7 @@
         </div>
         <!-- content:portfolio:start -->
         <div class="portfolio-grid" id="portfolio">
-          <article class="playlist">
+          <article id="motion" class="playlist">
             <div class="rail-head">
               <div>
                 <h3>Моушн-дизайн</h3>
@@ -206,7 +206,7 @@
               </li>
             </ol>
           </article>
-          <article class="playlist playlist--portrait">
+          <article id="reels" class="playlist playlist--portrait">
             <div class="rail-head">
               <div>
                 <h3>Рилс</h3>
@@ -307,7 +307,7 @@
               </li>
             </ol>
           </article>
-          <article class="playlist">
+          <article id="longform" class="playlist">
             <div class="rail-head">
               <div>
                 <h3>Горизонтальные видео</h3>
@@ -418,13 +418,9 @@
           </article>
         </div>
         <!-- content:portfolio:end -->
-        <div class="portfolio-bottom">
-          <!-- content:status:start -->
-          <span>Выберите ролик в подборке.</span>
-          <!-- content:status:end --><span class="mono"
-            >Selected frames / ruvy.project</span
-          >
-        </div>
+        <!-- content:status:start -->
+
+        <!-- content:status:end -->
       </section>
       <section class="section wrap about" id="about" aria-labelledby="about-title">
         <div class="reveal">
@@ -451,7 +447,7 @@
             </p>
           </div>
           <div class="tags">
-            <span>Визуальный сторителлинг</span><span>Ритм и звук</span
+            <span>Качественный пайплайн</span><span>Ритм и звук</span
             ><span>Внимание к деталям</span>
           </div>
         </div>
@@ -469,82 +465,78 @@
             </h2>
           </div>
         </div>
-        <a href="#contacts" class="price-link"
-          >Обсудить стоимость проекта <span aria-hidden="true">↗</span></a
-        >
-        <div class="service-list">
-          <article class="service reveal">
-            <span class="index">01</span>
-            <h3>Вертикальные ролики</h3>
-            <p>
-              Короткий формат, чёткий ритм и внимание с первых секунд. Reels, Shorts и
-              клипы.
-            </p>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+        <!-- content:services:start -->
+        <div class="format-list">
+          <article class="format-row">
+            <div>
+              <h3>Рилс</h3>
+              <p>
+                Вертикальные ролики для Reels и Shorts. Монтаж под речь или музыку,
+                субтитры и графика.
+              </p>
+            </div>
+            <div class="format-details">
+              <strong>1 500–5 000 ₽ / ролик</strong
+              ><a href="#reels">Смотреть примеры ↗</a>
+            </div>
           </article>
-          <article class="service reveal">
-            <span class="index">02</span>
-            <h3>YouTube-видео</h3>
-            <p>
-              Структура, темп и визуальные акценты для влогов, интервью и разговорных
-              видео.
-            </p>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+          <article class="format-row">
+            <div>
+              <h3>Моушн-дизайн</h3>
+              <p>
+                Анимация текста и иллюстраций, заставки, композитинг и визуальные эффекты.
+              </p>
+            </div>
+            <div class="format-details">
+              <strong>2 000–5 000 ₽ / минута</strong
+              ><a href="#motion">Смотреть примеры ↗</a>
+            </div>
           </article>
-          <article class="service reveal">
-            <span class="index">03</span>
-            <h3>Моушн-дизайн</h3>
-            <p>Анимированная графика, заставки и элементы, которые дополняют историю.</p>
-            <span class="service-arrow" aria-hidden="true">↗</span>
-          </article>
-          <article class="service reveal">
-            <span class="index">04</span>
-            <h3>Анимация субтитров</h3>
-            <p>
-              Выразительный текст в ритме речи. Читаемость, движение и смысловые акценты.
-            </p>
-            <span class="service-arrow" aria-hidden="true">↗</span>
-          </article>
-          <article class="service reveal">
-            <span class="index">05</span>
-            <h3>Визуальные эффекты</h3>
-            <p>
-              Композитинг и эффекты, которые поддерживают идею и органично работают в
-              кадре.
-            </p>
-            <span class="service-arrow" aria-hidden="true">↗</span>
+          <article class="format-row">
+            <div>
+              <h3>Горизонтальные видео</h3>
+              <p>Подкасты, интервью, авторские и игровые видео для YouTube.</p>
+            </div>
+            <div class="format-details">
+              <strong>5 000–15 000 ₽ / видео</strong
+              ><a href="#longform">Смотреть примеры ↗</a>
+            </div>
           </article>
         </div>
-        <div class="tools reveal" role="group" aria-labelledby="tools-title">
-          <h3 class="tools-title" id="tools-title">Инструменты</h3>
-          <div class="tool-grid">
-            <div class="tool" title="Adobe Premiere Pro">
+        <!-- content:services:end -->
+        <div class="studio-stack reveal">
+          <h3>Чем я работаю</h3>
+          <div class="stack-items">
+            <article class="stack-item">
               <img
-                class="tool-icon"
                 src="ruvy-project/assets/tools/premierepro.svg"
-                alt="Adobe Premiere Pro"
-                width="56"
-                height="56"
+                alt=""
+                width="44"
+                height="44"
               />
-            </div>
-            <div class="tool" title="Adobe After Effects">
+              <h4>Premiere Pro</h4>
+              <p>Собираю историю из дублей, выстраиваю темп и свожу звук.</p>
+            </article>
+            <article class="stack-item">
               <img
-                class="tool-icon"
                 src="ruvy-project/assets/tools/aftereffects.svg"
-                alt="Adobe After Effects"
-                width="56"
-                height="56"
+                alt=""
+                width="44"
+                height="44"
               />
-            </div>
-            <div class="tool" title="Adobe Photoshop">
+              <h4>After Effects</h4>
+              <p>Анимирую титры и графику, совмещаю слои и эффекты в кадре.</p>
+            </article>
+            <article class="stack-item">
               <img
-                class="tool-icon"
                 src="ruvy-project/assets/tools/photoshop.svg"
-                alt="Adobe Photoshop"
-                width="56"
-                height="56"
+                alt=""
+                width="44"
+                height="44"
               />
-            </div>
+              <h4>Photoshop</h4>
+              <p>Готовлю обложки и разбираю изображения на слои для анимации.</p>
+            </article>
           </div>
         </div>
       </section>

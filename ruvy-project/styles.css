@@ -1348,7 +1348,13 @@ nav a.active::before {
   color: var(--accent);
 }
 .hero h1 .brand-suffix {
-  color: var(--ink);
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  padding-right: 0.09em;
+  color: transparent;
+  -webkit-text-stroke: clamp(1px, 0.1vw, 2px) var(--ink);
   animation-delay: 0.14s;
 }
 @keyframes type-rise {
@@ -2048,5 +2054,104 @@ html[data-motion='off'] .title-mask > span {
   }
   .rail-head {
     align-items: flex-end;
+  }
+}
+
+.playlist[id] {
+  scroll-margin-top: 90px;
+}
+.format-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: center;
+  padding: clamp(20px, 3vw, 40px) 0;
+  border-top: 1px solid var(--line);
+}
+.format-row h3,
+.studio-stack h3 {
+  font-family: var(--display);
+  font-size: clamp(22px, 3vw, 42px);
+  letter-spacing: -0.05em;
+  line-height: 1.18;
+}
+.format-row p,
+.stack-item p {
+  color: var(--muted);
+  margin-top: 10px;
+  max-width: 54ch;
+  line-height: 1.6;
+}
+.format-details {
+  display: grid;
+  justify-items: end;
+  gap: 8px;
+}
+.format-details strong {
+  color: var(--accent);
+  font-size: clamp(16px, 2vw, 25px);
+}
+.format-details a {
+  font-size: 14px;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  padding-block: 6px;
+}
+.studio-stack {
+  margin-top: clamp(44px, 6vw, 90px);
+}
+.stack-items {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 24px;
+}
+.stack-item {
+  padding: clamp(20px, 2.5vw, 36px);
+  border: 1px solid #35323c;
+  border-radius: 16px;
+  background: radial-gradient(ellipse at 100% 100%, #262337, transparent 60%), #151517;
+}
+.stack-item:nth-child(2) {
+  background: radial-gradient(ellipse at 100% 100%, #32243e, transparent 60%), #151517;
+}
+.stack-item:nth-child(3) {
+  background: radial-gradient(ellipse at 100% 100%, #192f40, transparent 60%), #151517;
+}
+.stack-item h4 {
+  font-size: clamp(21px, 2.4vw, 34px);
+  letter-spacing: -0.045em;
+  margin-top: 32px;
+  line-height: 1.15;
+}
+@media (max-width: 700px) {
+  .stack-items,
+  .format-row {
+    grid-template-columns: 1fr;
+  }
+  .format-row {
+    gap: 14px;
+  }
+  .format-details {
+    justify-items: start;
+  }
+  .stack-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 2px 16px;
+    align-items: center;
+  }
+  .stack-item h4 {
+    margin: 0;
+  }
+  .stack-item p {
+    grid-column: 2;
+    margin: 0;
+  }
+}
+@media (forced-colors: active) {
+  .hero h1 .brand-suffix {
+    color: CanvasText;
+    -webkit-text-stroke: 0;
   }
 }

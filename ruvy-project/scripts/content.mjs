@@ -97,7 +97,7 @@ function renderServices(projects, rates = {}) {
   );
 }
 
-function playlistCard(title, works, rate) {
+function playlistCard(title, works, description) {
   const tracks = works.map((work, index) => {
     const number = String(index + 1).padStart(2, '0');
     const label = escape(title) + ' · ' + number;
@@ -110,9 +110,9 @@ function playlistCard(title, works, rate) {
       <div class="track-cover">${thumb ? `<img loading="lazy" src="${escape(thumb)}" alt="">` : ''}<span aria-hidden="true">▶</span></div>
       <div class="track-caption">${number}</div></a></li>`;
   });
-  return `<article${Object.hasOwn(formats, title) ? ' id="' + formats[title].id + '"' : ''} class="playlist${title === 'Рилс' ? ' playlist--portrait' : ''}"><div class="rail-head"><div><h3>${escape(title)}</h3>${rate ? `<p class="rate">${escape(rate)}</p>` : ''}</div><div class="rail-buttons"><button type="button" data-step="-1" aria-label="Листать назад: ${escape(title)}">←</button><button type="button" data-step="1" aria-label="Листать вперёд: ${escape(title)}">→</button></div></div><ol class="track-rail">${tracks.join('')}</ol></article>`;
+  return `<article${Object.hasOwn(formats, title) ? ' id="' + formats[title].id + '"' : ''} class="playlist${title === 'Рилс' ? ' playlist--portrait' : ''}"><div class="rail-head"><div><h3>${escape(title)}</h3>${description ? `<p class="playlist-description">${escape(description)}</p>` : ''}</div><div class="rail-buttons"><button type="button" data-step="-1" aria-label="Листать назад: ${escape(title)}">←</button><button type="button" data-step="1" aria-label="Листать вперёд: ${escape(title)}">→</button></div></div><ol class="track-rail">${tracks.join('')}</ol></article>`;
 }
-function renderPlaylists(projects, rates = {}) {
+function renderPlaylists(projects, descriptions = {}) {
   const groups = new Map();
   for (const project of projects) {
     const name = project.category || 'Работы';
@@ -120,7 +120,7 @@ function renderPlaylists(projects, rates = {}) {
     groups.get(name).push(project);
   }
   return [...groups]
-    .map(([name, works]) => playlistCard(name, works, rates[name]))
+    .map(([name, works]) => playlistCard(name, works, descriptions[name]))
     .join('\n');
 }
 export function renderContacts(data) {
@@ -145,7 +145,7 @@ export function renderContent(html, data) {
     : 6;
   const parts = {
     count: `<span id="work-count" role="status" aria-label="Опубликовано работ: ${projects.length}">[ ${String(projects.length).padStart(2, '0')} ]</span>`,
-    portfolio: `<div class="portfolio-grid" id="portfolio">${projects.length ? renderPlaylists(projects, data.rates) : Array.from({ length: placeholderCount }, (_, index) => placeholder(index)).join('\n')}</div>`,
+    portfolio: `<div class="portfolio-grid" id="portfolio">${projects.length ? renderPlaylists(projects, data.playlistDescriptions) : Array.from({ length: placeholderCount }, (_, index) => placeholder(index)).join('\n')}</div>`,
     status: projects.length ? '' : '<p>Портфолио скоро появится здесь.</p>',
     services: renderServices(projects, data.rates),
     contacts: renderContacts(data),

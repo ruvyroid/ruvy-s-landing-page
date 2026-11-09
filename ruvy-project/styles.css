@@ -1933,10 +1933,12 @@ html[data-motion='off'] .title-mask > span {
   font-size: clamp(18px, 2.4vw, 32px);
   letter-spacing: -0.04em;
 }
-.rate {
-  margin-top: 6px;
-  color: var(--accent);
-  font-size: 14px;
+.playlist-description {
+  max-width: 68ch;
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: clamp(14px, 1.25vw, 17px);
+  line-height: 1.55;
 }
 .rail-buttons {
   display: none;
@@ -2068,15 +2070,13 @@ html[data-motion='off'] .title-mask > span {
   padding: clamp(20px, 3vw, 40px) 0;
   border-top: 1px solid var(--line);
 }
-.format-row h3,
-.studio-stack h3 {
+.format-row h3 {
   font-family: var(--display);
   font-size: clamp(22px, 3vw, 42px);
   letter-spacing: -0.05em;
   line-height: 1.18;
 }
-.format-row p,
-.stack-item p {
+.format-row p {
   color: var(--muted);
   margin-top: 10px;
   max-width: 54ch;
@@ -2098,55 +2098,40 @@ html[data-motion='off'] .title-mask > span {
   padding-block: 6px;
 }
 .studio-stack {
-  margin-top: clamp(44px, 6vw, 90px);
-}
-.stack-items {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 24px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  list-style: none;
+  gap: clamp(6px, 1vw, 14px);
+  padding: 0;
+  margin: clamp(32px, 5vw, 70px) 0 0;
 }
-.stack-item {
-  padding: clamp(20px, 2.5vw, 36px);
-  border: 1px solid #35323c;
-  border-radius: 16px;
-  background: radial-gradient(ellipse at 100% 100%, #262337, transparent 60%), #151517;
+.studio-stack li {
+  display: grid;
+  place-items: center;
+  min-height: clamp(58px, 6vw, 84px);
+  border-radius: 14px;
+  background: #171719;
+  border: 1px solid #2a292e;
 }
-.stack-item:nth-child(2) {
-  background: radial-gradient(ellipse at 100% 100%, #32243e, transparent 60%), #151517;
+.studio-stack li:nth-child(-n + 2) {
+  grid-column: span 2;
+  min-height: clamp(74px, 8vw, 108px);
+  background: #1b1a20;
 }
-.stack-item:nth-child(3) {
-  background: radial-gradient(ellipse at 100% 100%, #192f40, transparent 60%), #151517;
+.studio-stack img {
+  width: clamp(28px, 3vw, 40px);
+  height: auto;
 }
-.stack-item h4 {
-  font-size: clamp(21px, 2.4vw, 34px);
-  letter-spacing: -0.045em;
-  margin-top: 32px;
-  line-height: 1.15;
+.studio-stack li:nth-child(-n + 2) img {
+  width: clamp(40px, 4vw, 56px);
 }
 @media (max-width: 700px) {
-  .stack-items,
   .format-row {
     grid-template-columns: 1fr;
-  }
-  .format-row {
     gap: 14px;
   }
   .format-details {
     justify-items: start;
-  }
-  .stack-item {
-    display: grid;
-    grid-template-columns: auto 1fr;
-    gap: 2px 16px;
-    align-items: center;
-  }
-  .stack-item h4 {
-    margin: 0;
-  }
-  .stack-item p {
-    grid-column: 2;
-    margin: 0;
   }
 }
 @media (forced-colors: active) {

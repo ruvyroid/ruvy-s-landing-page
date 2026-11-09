@@ -111,7 +111,7 @@ header {
   font-weight: 800;
   letter-spacing: -1px;
 }
-.logo span {
+.logo .brand-dot {
   color: var(--accent);
 }
 nav {
@@ -1204,6 +1204,8 @@ body {
   font-family: var(--body);
 }
 .logo {
+  --brand-stroke: 0.65px;
+  white-space: nowrap;
   font-family: var(--display);
   font-size: 19px;
   letter-spacing: -0.07em;
@@ -1328,8 +1330,8 @@ nav a.active::before {
   padding-bottom: 0.08em;
   color: var(--ink) !important;
 }
-.brand-fill,
-.brand-suffix {
+.hero .brand-fill,
+.hero .brand-suffix {
   display: inline-block;
   animation: type-rise 1.15s var(--ease) both;
 }
@@ -1339,14 +1341,15 @@ nav a.active::before {
 .hero h1 .brand-dot {
   color: var(--accent);
 }
-.hero h1 .brand-suffix {
+.hero h1 .brand-suffix,
+.logo .brand-suffix {
   font-family: Georgia, 'Times New Roman', serif;
   font-style: italic;
   font-weight: 500;
   letter-spacing: -0.055em;
   padding-right: 0.09em;
   color: transparent;
-  -webkit-text-stroke: clamp(1px, 0.1vw, 2px) var(--ink);
+  -webkit-text-stroke: var(--brand-stroke, clamp(1px, 0.1vw, 2px)) var(--ink);
   animation-delay: 0.14s;
 }
 @keyframes type-rise {
@@ -2096,7 +2099,8 @@ html[data-motion='off'] .title-mask > span {
   }
 }
 @media (forced-colors: active) {
-  .hero h1 .brand-suffix {
+  .hero h1 .brand-suffix,
+  .logo .brand-suffix {
     color: CanvasText;
     -webkit-text-stroke: 0;
   }
